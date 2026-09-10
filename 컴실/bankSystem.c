@@ -1,3 +1,4 @@
+//bankSystem.c
 #include "account_data.h"
 
 //ÀÔ±Ý
@@ -21,9 +22,9 @@ void deposit(Account users[], int count) {
 		else {
 			users[num].total += money;
 			made_history(&users[num], money, "ÀÔ±Ý");
-			printf("%s´ÔÀÇ °èÁÂ %sÀÇ °Å·¡ ÈÄ ÀÜ¾×Àº %lldÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
+			printf("%s´ÔÀÇ °èÁÂ %sÀÇ °Å·¡ ÈÄ ÀÜ¾×Àº %lld¿øÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
 		}
-		
+
 	}
 }
 
@@ -53,7 +54,7 @@ void withdrawal(Account users[], int count) {
 				else {
 					users[num].total -= money;
 					made_history(&users[num], -money, "Ãâ±Ý");
-					printf("%s´ÔÀÇ °èÁÂ %sÀÇ °Å·¡ ÈÄ ÀÜ¾×Àº %lldÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
+					printf("%s´ÔÀÇ °èÁÂ %sÀÇ °Å·¡ ÈÄ ÀÜ¾×Àº %lld¿øÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
 				}
 			}
 		}
@@ -75,7 +76,7 @@ void checkBalance(Account users[], int count) {
 	}
 	else {
 		if (isRightPW(users[num]) == 0) {
-			printf("%s´ÔÀÇ °èÁÂ %sÀÇ ÀÜ¾×Àº %lldÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
+			printf("%s´ÔÀÇ °èÁÂ %sÀÇ ÀÜ¾×Àº %lld¿øÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
 			made_history(&users[num], 0, "ÀÜ¾× Á¶È¸");
 		}
 	}
@@ -109,9 +110,9 @@ void transfer(Account users[], int count) {
 				users[num2].total += money;
 				made_history(&users[num], money, "ÀÌÃ¼(¼Û±Ý)");
 				made_history(&users[num2], money, "ÀÔ±Ý");
-				printf("%s´ÔÀÇ °èÁÂ %sÀÇ °Å·¡ ÈÄ ÀÜ¾×Àº %lldÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
+				printf("%s´ÔÀÇ °èÁÂ %sÀÇ °Å·¡ ÈÄ ÀÜ¾×Àº %lld¿øÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
 			}
-			
+
 		}
 	}
 }

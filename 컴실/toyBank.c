@@ -1,3 +1,4 @@
+//toyBank.c
 #include "account_data.h"
 
 int main() {
@@ -10,7 +11,7 @@ int main() {
 		printf("어떤 서비스를 이용하실 건가요? (1.계좌 생성 2.금융 서비스 3.거래 내역 확인 4.종료): ");
 		scanf("%d", &service);
 		printf("========================================================================\n");
-		
+
 		if (service == 1) {
 			made_account(users, &user_count);
 		}
@@ -38,6 +39,7 @@ int main() {
 			checkTransaction(users, user_count);
 		}
 		else if (service == 4) {
+			printf("프로그램을 종료합니다.");
 			break;
 		}
 		else if (user_count == 0) {
@@ -48,5 +50,3 @@ int main() {
 		}
 	}
 }
-
-//데이터 검사
