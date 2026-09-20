@@ -1,10 +1,10 @@
 //accountSystem.c
 #include "account_data.h"
 
-//°èÁÂ »ı¼º
+//ê³„ì¢Œ ìƒì„±
 void made_account(Account users[], int* count) {
 	if (*count >= MAX_ACCOUNT) {
-		printf("°èÁÂ¸¦ »ı¼ºÇÒ ¼ö ¾ø½À´Ï´Ù. °í°´¼¾ÅÍ¿¡ ¹®ÀÇÇÏ¼¼¿ä.\n\n");
+		printf("ê³„ì¢Œë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ê³ ê°ì„¼í„°ì— ë¬¸ì˜í•˜ì„¸ìš”.\n\n");
 		return 0;
 	}
 
@@ -14,22 +14,22 @@ void made_account(Account users[], int* count) {
 
 	sprintf(users[num].accountNum, "0304-8989-%04d", tail);
 
-	printf("ÀÌ¸§: ");
+	printf("ì´ë¦„: ");
 	scanf("%s", users[num].name);
 
-	printf("ºñ¹Ğ¹øÈ£: ");
+	printf("ë¹„ë°€ë²ˆí˜¸: ");
 	scanf("%s", users[num].password);
 
-	printf("ÃÊ±â ÀÔ±İ¾×: ");
+	printf("ì´ˆê¸° ì…ê¸ˆì•¡: ");
 	scanf("%lld", &users[num].total);
 	users[num].history_count = 0;
 
-	printf("°èÁÂ »ı¼º ¿Ï·á!\n");
-	printf("%s´ÔÀÇ °èÁÂ ¹øÈ£´Â %sÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum);
+	printf("ê³„ì¢Œ ìƒì„± ì™„ë£Œ!\n");
+	printf("%së‹˜ì˜ ê³„ì¢Œ ë²ˆí˜¸ëŠ” %sì…ë‹ˆë‹¤.\n\n", users[num].name, users[num].accountNum);
 	(*count)++;
 }
 
-//°Å·¡³»¿ª »ı¼º
+//ê±°ë˜ë‚´ì—­ ìƒì„±
 void made_history(Account* user, long long money, char* type) {
 	Transaction new_transaction;
 	new_transaction.money = money;
@@ -45,7 +45,7 @@ void made_history(Account* user, long long money, char* type) {
 	user->history[user->history_count++] = new_transaction;
 }
 
-//°èÁÂ¹øÈ£·Î °èÁÂ Ã£±â
+//ê³„ì¢Œë²ˆí˜¸ë¡œ ê³„ì¢Œ ì°¾ê¸°
 int find_account_by_num(Account users[], char* acc_num, int count) {
 	for (int i = 0; i < count; i++) {
 		if (!strcmp(users[i].accountNum, acc_num)) {
@@ -54,7 +54,7 @@ int find_account_by_num(Account users[], char* acc_num, int count) {
 	}
 	return -1;
 }
-//ÀÌ¸§À¸·Î °èÁÂ Ã£±â
+//ì´ë¦„ìœ¼ë¡œ ê³„ì¢Œ ì°¾ê¸°
 int find_account_by_name(Account users[], char* name, int count) {
 	for (int i = 0; i < count; i++) {
 		if (!strcmp(users[i].name, name)) {
@@ -64,18 +64,18 @@ int find_account_by_name(Account users[], char* name, int count) {
 	return -1;
 }
 
-//ºñ¹Ğ¹øÈ£ È®ÀÎ
+//ë¹„ë°€ë²ˆí˜¸ í™•ì¸
 int isRightPW(Account user) {
 	char pw[20];
-	printf("°í°´ ÀÎÁõÀ» À§ÇØ ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä: ");
+	printf("ê³ ê° ì¸ì¦ì„ ìœ„í•´ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”: ");
 	scanf("%s", pw);
 
 	if (!strcmp(user.password, pw)) {
-		printf("ÀÎÁõÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.\n");
+		printf("ì¸ì¦ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 		return 0;
 	}
 	else {
-		printf("[¿À·ù] ºñ¹Ğ¹øÈ£°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.\n\n");
+		printf("[ì˜¤ë¥˜] ë¹„ë°€ë²ˆí˜¸ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\n");
 		return -1;
 	}
 }
