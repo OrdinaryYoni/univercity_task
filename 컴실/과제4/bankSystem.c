@@ -1,62 +1,62 @@
 //bankSystem.c
 #include "account_data.h"
 
-//ÀÔ±İ
+//ì…ê¸ˆ
 void deposit(Account users[], int count) {
 	char account_num[20];
 	long long money;
 
-	printf("ÀÔ±İÇÒ °èÁÂ¹øÈ£ ÀÔ·Â: ");
+	printf("ì…ê¸ˆí•  ê³„ì¢Œë²ˆí˜¸ ì…ë ¥: ");
 	scanf("%s", account_num);
 
 	int num = find_account_by_num(users, account_num, count);
 	if (num == -1) {
-		printf("[¿À·ù] Á¸ÀçÇÏÁö ¾Ê´Â °èÁÂ¹øÈ£ÀÔ´Ï´Ù.\n\n");
+		printf("[ì˜¤ë¥˜] ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê³„ì¢Œë²ˆí˜¸ì…ë‹ˆë‹¤.\n\n");
 	}
 	else {
-		printf("ÀÔ±İÇÒ ±İ¾× ÀÔ·Â: ");
+		printf("ì…ê¸ˆí•  ê¸ˆì•¡ ì…ë ¥: ");
 		scanf("%lld", &money);
 		if (money < 0) {
-			printf("[¿À·ù] Àß¸øµÈ ÀÔ·Â°ªÀÔ´Ï´Ù. ¾ç¼ö·Î ÀÔ·ÂÇØÁÖ¼¼¿ä.\n\n");
+			printf("[ì˜¤ë¥˜] ì˜ëª»ëœ ì…ë ¥ê°’ì…ë‹ˆë‹¤. ì–‘ìˆ˜ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n\n");
 		}
 		else {
 			users[num].total += money;
-			made_history(&users[num], money, "ÀÔ±İ");
-			printf("%s´ÔÀÇ °èÁÂ %sÀÇ °Å·¡ ÈÄ ÀÜ¾×Àº %lld¿øÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
+			made_history(&users[num], money, "ì…ê¸ˆ");
+			printf("%së‹˜ì˜ ê³„ì¢Œ %sì˜ ê±°ë˜ í›„ ì”ì•¡ì€ %lldì›ì…ë‹ˆë‹¤.\n\n", users[num].name, users[num].accountNum, users[num].total);
 		}
 
 	}
 }
 
-//Ãâ±İ
+//ì¶œê¸ˆ
 void withdrawal(Account users[], int count) {
 	char account_num[20];
 	long long money;
 
-	printf("Ãâ±İÇÒ °èÁÂ¹øÈ£ ÀÔ·Â: ");
+	printf("ì¶œê¸ˆí•  ê³„ì¢Œë²ˆí˜¸ ì…ë ¥: ");
 	scanf("%s", account_num);
 
 	int num = find_account_by_num(users, account_num, count);
 	int result;
 	if (num == -1) {
-		printf("[¿À·ù] Á¸ÀçÇÏÁö ¾Ê´Â °èÁÂ¹øÈ£ÀÔ´Ï´Ù.\n\n");
+		printf("[ì˜¤ë¥˜] ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê³„ì¢Œë²ˆí˜¸ì…ë‹ˆë‹¤.\n\n");
 	}
 	else {
 		result = isRightPW(users[num]);
 		if (result == 0) {
-			printf("Ãâ±İÇÒ ±İ¾× ÀÔ·Â: ");
+			printf("ì¶œê¸ˆí•  ê¸ˆì•¡ ì…ë ¥: ");
 			scanf("%lld", &money);
 			if (money > users[num].total) {
-				printf("ÀÜ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù.\n\n");
+				printf("ì”ì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.\n\n");
 			}
 			else {
 				if (money < 0) {
-					printf("[¿À·ù] Àß¸øµÈ ÀÔ·Â°ªÀÔ´Ï´Ù. ¾ç¼ö·Î ÀÔ·ÂÇØÁÖ¼¼¿ä.\n\n");
+					printf("[ì˜¤ë¥˜] ì˜ëª»ëœ ì…ë ¥ê°’ì…ë‹ˆë‹¤. ì–‘ìˆ˜ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n\n");
 				}
 				else {
 					users[num].total -= money;
-					made_history(&users[num], -money, "Ãâ±İ");
-					printf("%s´ÔÀÇ °èÁÂ %sÀÇ °Å·¡ ÈÄ ÀÜ¾×Àº %lld¿øÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
+					made_history(&users[num], -money, "ì¶œê¸ˆ");
+					printf("%së‹˜ì˜ ê³„ì¢Œ %sì˜ ê±°ë˜ í›„ ì”ì•¡ì€ %lldì›ì…ë‹ˆë‹¤.\n\n", users[num].name, users[num].accountNum, users[num].total);
 				}
 			}
 		}
@@ -65,35 +65,35 @@ void withdrawal(Account users[], int count) {
 
 }
 
-//ÀÜ¾× Á¶È¸
+//ì”ì•¡ ì¡°íšŒ
 void checkBalance(Account users[], int count) {
 	char account_num[20];
 
-	printf("ÀÜ¾× Á¶È¸ÇÒ °èÁÂ¹øÈ£ ÀÔ·Â: ");
+	printf("ì”ì•¡ ì¡°íšŒí•  ê³„ì¢Œë²ˆí˜¸ ì…ë ¥: ");
 	scanf("%s", account_num);
 
 	int num = find_account_by_num(users, account_num, count);
 	int result;
 	if (num == -1) {
-		printf("[¿À·ù] Á¸ÀçÇÏÁö ¾Ê´Â °èÁÂ¹øÈ£ÀÔ´Ï´Ù.\n\n");
+		printf("[ì˜¤ë¥˜] ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê³„ì¢Œë²ˆí˜¸ì…ë‹ˆë‹¤.\n\n");
 	}
 	else {
 		result = isRightPW(users[num]);
 		if (result == 0) {
-			printf("%s´ÔÀÇ °èÁÂ %sÀÇ ÀÜ¾×Àº %lld¿øÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
-			made_history(&users[num], 0, "ÀÜ¾× Á¶È¸");
+			printf("%së‹˜ì˜ ê³„ì¢Œ %sì˜ ì”ì•¡ì€ %lldì›ì…ë‹ˆë‹¤.\n\n", users[num].name, users[num].accountNum, users[num].total);
+			made_history(&users[num], 0, "ì”ì•¡ ì¡°íšŒ");
 		}
 	}
 }
 
-//ÀÌÃ¼
+//ì´ì²´
 void transfer(Account users[], int count) {
 	char my_num[20], other_num[20];
 	long long money;
 
-	printf("º»ÀÎ °èÁÂ¹øÈ£ ÀÔ·Â: ");
+	printf("ë³¸ì¸ ê³„ì¢Œë²ˆí˜¸ ì…ë ¥: ");
 	scanf("%s", my_num);
-	printf("ÀÌÃ¼ÇÒ »ó´ë °èÁÂ¹øÈ£ ÀÔ·Â: ");
+	printf("ì´ì²´í•  ìƒëŒ€ ê³„ì¢Œë²ˆí˜¸ ì…ë ¥: ");
 	scanf("%s", other_num);
 
 	int num = find_account_by_num(users, my_num, count);
@@ -101,26 +101,26 @@ void transfer(Account users[], int count) {
 	int result;
 
 	if (num == -1 || num2 == -1) {
-		printf("[¿À·ù] Á¸ÀçÇÏÁö ¾Ê´Â °èÁÂ¹øÈ£ÀÔ´Ï´Ù.\n\n");
+		printf("[ì˜¤ë¥˜] ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê³„ì¢Œë²ˆí˜¸ì…ë‹ˆë‹¤.\n\n");
 	}
 	else {
 		result = isRightPW(users[num]);
 		if (result == 0) {
-			printf("ÀÌÃ¼ÇÒ ±İ¾× ÀÔ·Â: ");
+			printf("ì´ì²´í•  ê¸ˆì•¡ ì…ë ¥: ");
 			scanf("%lld", &money);
 			if (money > users[num].total) {
-				printf("ÀÜ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù.\n\n");
+				printf("ì”ì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.\n\n");
 			}
 			else {
 				if (money < 0) {
-					printf("[¿À·ù] Àß¸øµÈ ÀÔ·Â°ªÀÔ´Ï´Ù. ¾ç¼ö·Î ÀÔ·ÂÇØÁÖ¼¼¿ä.\n\n");
+					printf("[ì˜¤ë¥˜] ì˜ëª»ëœ ì…ë ¥ê°’ì…ë‹ˆë‹¤. ì–‘ìˆ˜ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n\n");
 				}
 				else {
 					users[num].total -= money;
 					users[num2].total += money;
-					made_history(&users[num], money, "ÀÌÃ¼(¼Û±İ)");
-					made_history(&users[num2], money, "ÀÔ±İ");
-					printf("%s´ÔÀÇ °èÁÂ %sÀÇ °Å·¡ ÈÄ ÀÜ¾×Àº %lld¿øÀÔ´Ï´Ù.\n\n", users[num].name, users[num].accountNum, users[num].total);
+					made_history(&users[num], money, "ì´ì²´(ì†¡ê¸ˆ)");
+					made_history(&users[num2], money, "ì…ê¸ˆ");
+					printf("%së‹˜ì˜ ê³„ì¢Œ %sì˜ ê±°ë˜ í›„ ì”ì•¡ì€ %lldì›ì…ë‹ˆë‹¤.\n\n", users[num].name, users[num].accountNum, users[num].total);
 				}
 				
 			}
@@ -129,17 +129,17 @@ void transfer(Account users[], int count) {
 	}
 }
 
-//°Å·¡³»¿ª È®ÀÎ
+//ê±°ë˜ë‚´ì—­ í™•ì¸
 void checkTransaction(Account users[], int count) {
 	char name[20];
-	printf("Á¶È¸ÇÒ ÀÌ¸§ È®ÀÎ: ");
+	printf("ì¡°íšŒí•  ì´ë¦„ í™•ì¸: ");
 	scanf("%s", name);
 	int num = find_account_by_name(users, name, count);
 	if (num == -1) {
-		printf("[¿À·ù] Á¸ÀçÇÏÁö ¾Ê´Â »ç¿ëÀÚÀÔ´Ï´Ù.\n\n");
+		printf("[ì˜¤ë¥˜] ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì‚¬ìš©ìì…ë‹ˆë‹¤.\n\n");
 	}
 	else {
-		printf("°Å·¡|	°Å·¡ Á¾·ù|	µ·\n");
+		printf("ê±°ë˜|	ê±°ë˜ ì¢…ë¥˜|	ëˆ\n");
 		printf("========================================\n");
 		for (int i = 0; i < users[num].history_count; i++) {
 			printf("%d|	%s|	%lld\n", i + 1, users[num].history[i].type, users[num].history[i].money);
