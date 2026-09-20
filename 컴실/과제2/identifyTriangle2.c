@@ -8,32 +8,32 @@ int isTriangle(int x, int y, int z);
 
 int main() {
 	int x, y, z, data_result, result;
-	printf("»ï°¢Çü ¼¼ º¯ÀÇ °ªÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä(°ø¹éÀ¸·Î ±¸ºĞÇØÁÖ¼¼¿ä): ");
+	printf("ì‚¼ê°í˜• ì„¸ ë³€ì˜ ê°’ì„ ì…ë ¥í•´ì£¼ì„¸ìš”(ê³µë°±ìœ¼ë¡œ êµ¬ë¶„í•´ì£¼ì„¸ìš”): ");
 	scanf("%d %d %d", &x, &y, &z);
 	data_result = checkData(x, y, z);
 
 	if (data_result == 0) {
-		printf("°ª¿¡ À½¼ö¿Í 0ÀÌ Æ÷ÇÔµÇ¾îÀÖ½À´Ï´Ù. ¾ç¼ö·Î ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		printf("ê°’ì— ìŒìˆ˜ì™€ 0ì´ í¬í•¨ë˜ì–´ìˆìŠµë‹ˆë‹¤. ì–‘ìˆ˜ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 	}
 	else {
 		result = isTriangle(x, y, z);
 		if (result == 0) {
-			printf("»ï°¢ÇüÀÌ ¾Æ´Õ´Ï´Ù!");
+			printf("ì‚¼ê°í˜•ì´ ì•„ë‹™ë‹ˆë‹¤!");
 		}
 		else {
-			printf("»ï°¢ÇüÀÔ´Ï´Ù!");
+			printf("ì‚¼ê°í˜•ì…ë‹ˆë‹¤!");
 		}
 	}
 }
 
-//µ¥ÀÌÅÍ °Ë»ç(À½¼ö¶û 0 °É·¯³»±â)
+//ë°ì´í„° ê²€ì‚¬(ìŒìˆ˜ë‘ 0 ê±¸ëŸ¬ë‚´ê¸°)
 int checkData(int x, int y, int z) {
 	if (x <= 0 || y <= 0 || z <= 0) {
 		return 0;
 	}
 	else return 1;
 }
-//»ï°¢ÇüÀÎÁö ÆÇº°
+//ì‚¼ê°í˜•ì¸ì§€ íŒë³„
 int isTriangle(int x, int y, int z) {
 	if (x < y + z && y < x + z && z < x + y){
 		return 1;
