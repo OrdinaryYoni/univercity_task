@@ -73,9 +73,12 @@ int main() {
 				printf("전화번호: %s\n\n", users[result].phone);
 			}
 		}
-		else if (menu == 3) break;
+		else if (menu == 3) {
+			printf("프로그램을 종료합니다.");
+			break;
+		}
 		else {
-			printf("잘못된 입력입니다. 1~3에서 입력해주세요.");
+			printf("잘못된 입력입니다. 1~3에서 입력해주세요.\n\n");
 		}
 	}
 
@@ -86,7 +89,7 @@ int loadEmployees(char* filename, Employee users[], int current_year) {
 	FILE* fp;
 	fp = fopen(filename, "r");
 	if (fp == NULL) {
-		printf("[오류] 파일 '%s'를 읽을 수 없습니다.\n\n", filename);
+		printf("[오류] 파일 '%s'를 읽을 수 없습니다.", filename);
 		return -1;
 	}
 	char line[256];
@@ -101,7 +104,7 @@ int loadEmployees(char* filename, Employee users[], int current_year) {
 		int check = sscanf(line, "%d %s %s %d.%d.%d", &temp.id, temp.name, temp.phone, &temp.birth[0], &temp.birth[1], &temp.birth[2]);
 
 		if (check != 6) {
-			printf("[오류] %d번째 줄: 데이터 형식이 올바르지 않아 건너뜁니다. -> %s\n", line_num, line);
+			printf("[오류] %d번째 줄: 데이터 형식이 올바르지 않아 건너뜁니다. -> %s", line_num, line);
 			continue;
 		}
 		if (isDuplicateID(users, count, temp.id)) {
@@ -112,12 +115,13 @@ int loadEmployees(char* filename, Employee users[], int current_year) {
 			printf("[오류] %d번째 줄: 잘못된 생년월일(%d-%d-%d)입니다. 건너뜁니다.\n", line_num, temp.birth[0], temp.birth[1], temp.birth[2]);
 			continue;
 		}
-		printf("\n");
+		
 		users[count] = temp;
 		count++;
 	}
 
 	fclose(fp);
+	printf("\n");
 	return count;
 
 }
