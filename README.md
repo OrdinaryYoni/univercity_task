@@ -4,4 +4,4 @@
 
 ## ✨ Skills
 
-<img src="https://img.shields.io/badge/c-A8B9CC?&style=for-the-badge&logo=fortran&logoColor=white" />
+<img src="http://www.w3.org/2000/svg?&style=for-the-badge&logo=fortran&logoColor=white" />
