@@ -6,4 +6,6 @@
 
 <img src="https://img.shields.io/badge/c-%23A8B9CC.svg?&style=for-the-badge&logo=c&logoColor=black" /> <img src="https://img.shields.io/badge/python-%233776AB.svg?&style=for-the-badge&logo=python&logoColor=white" /> <img src="https://img.shields.io/badge/java-%23007396.svg?&style=for-the-badge&logo=java&logoColor=white" /> <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=white"/> </a>
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=OrdinaryYoni)](https://github.com/anuraghazra/github-readme-stats)
+## 하고 싶은 말
+
+교수님들 제발 과제 적당히 내주세요.
