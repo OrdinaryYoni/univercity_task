@@ -1,16 +1,17 @@
+//manageRoom.c
 #include <stdio.h>
 #pragma warning(disable:4996)
 #define MAXROOM 50
 
 void check_in(unsigned char room[]);
 void check_out(unsigned char room[]);
-unsigned int calcMoney(unsigned char capacity, unsigned int day);
+unsigned int calcMoney(unsigned char capacity, int day);
 
 int main() {
 	unsigned char room[MAXROOM + 1] = { 0 };
-	short menu;
+	int menu;
 	while (1) {
-		printf("ë©”ë‰´ ì…ë ¥(1.ì…ì‹¤ 2.í‡´ì‹¤ 3.ì¢…ë£Œ) : ");
+		printf("¸Ş´º ÀÔ·Â(1.ÀÔ½Ç 2.Åğ½Ç 3.Á¾·á) : ");
 		scanf("%d", &menu);
 		if (menu == 1) {
 			check_in(room);
@@ -19,26 +20,27 @@ int main() {
 			check_out(room);
 		}
 		else if (menu == 3) {
+			printf("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
 			break;
 		}
 		else {
-			printf("ì˜ëª»ëœ ì„ íƒì§€ ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n\n");
+			printf("Àß¸øµÈ ¼±ÅÃÁö ÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n\n");
 		}
 	}
 }
 
 void check_in(unsigned char room[]) {
-	short num,room_num;
-	printf("ì…ì‹¤í•  ì¸ì› ìˆ˜ ì…ë ¥: ");
+	int num,room_num;
+	printf("ÀÔ½ÇÇÒ ÀÎ¿ø ¼ö ÀÔ·Â: ");
 	scanf("%d", &num);
 	if (num <= 0) {
-		printf("ì˜ëª»ëœ ê°’ì…ë‹ˆë‹¤. ì–‘ìˆ˜ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n\n");
+		printf("Àß¸øµÈ °ªÀÔ´Ï´Ù. ¾ç¼ö·Î ÀÔ·ÂÇØÁÖ¼¼¿ä.\n\n");
 	}
 	else if (num > 4) {
-		printf("5ì¸ ì´ìƒë¶€í„°ëŠ” ë°©ì„ ì—¬ëŸ¬ê°œ ì¡ì•„ì•¼ í•©ë‹ˆë‹¤.\n\n");
+		printf("5ÀÎ ÀÌ»óºÎÅÍ´Â ¹æÀ» ¿©·¯°³ Àâ¾Æ¾ß ÇÕ´Ï´Ù.\n\n");
 	}
 	else {
-		printf("--í˜„ì¬ ë¹ˆ ë°©--\n");
+		printf("--ÇöÀç ºó ¹æ--\n");
 		for (unsigned char i = 1;i <= MAXROOM;i++) {
 			if (room[i] == 0) {
 				printf("%d, ", i);
@@ -46,44 +48,49 @@ void check_in(unsigned char room[]) {
 		}
 		printf("\n\n");
 		while (1) {
-			printf("ë°© ë²ˆí˜¸ ì…ë ¥: ");
+			printf("¹æ ¹øÈ£ ÀÔ·Â: ");
 			scanf("%d", &room_num);
 			if (room_num <= 0 || room_num > 50) {
-				printf("ì˜ëª»ëœ ê°’ì…ë‹ˆë‹¤. 1~50ë²”ìœ„ì—ì„œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n");
+				printf("Àß¸øµÈ °ªÀÔ´Ï´Ù. 1~50¹üÀ§¿¡¼­ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
 			}
 			else if (room[room_num] != 0) {
-				printf("ë¹ˆ ë°©ì´ ì•„ë‹™ë‹ˆë‹¤. ë‹¤ë¥¸ ë°©ì„ ì„ íƒí•´ì£¼ì„¸ìš”.\n");
+				printf("ºó ¹æÀÌ ¾Æ´Õ´Ï´Ù. ´Ù¸¥ ¹æÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.\n");
 			}
 			else {
 				room[room_num] = num;
-				printf("%dë²ˆ ë°© ì…ì‹¤ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.\n\n", room_num);
+				printf("%d¹ø ¹æ ÀÔ½Ç ¿Ï·áµÇ¾ú½À´Ï´Ù.\n\n", room_num);
 				break;
 			}
+		}
+	}
+}
+
+void check_out(unsigned char room[]) {
+	int room_num, day;
+	printf("Åğ½ÇÇÒ ¹æ ¹øÈ£ ÀÔ·Â: ");
+	scanf("%d", &room_num);
+	if (room_num <= 0 || room_num > 50) {
+		printf("Àß¸øµÈ °ªÀÔ´Ï´Ù. 1~50¹üÀ§¿¡¼­ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n\n");
+	}
+	else if (room[room_num] == 0) {
+		printf("ºó ¹æÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n\n");
+	}
+	else {
+		printf("Åõ¼÷ÀÏ ÀÔ·Â: ");
+		scanf("%d", &day);
+		if (day <= 0 || day >= 35792) {
+			printf("Àß¸øµÈ °ªÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n\n");
+		}
+		else {
+			printf("Á¤»êÇÒ ÃÑ ¿ä±İÀº %d¿øÀÔ´Ï´Ù.\n", calcMoney(room[room_num], day));
+			room[room_num] = 0;
+			printf("Á¤»óÀûÀ¸·Î Ã³¸®µÇ¾ú½À´Ï´Ù.\n\n");
 		}
 		
 	}
 }
 
-void check_out(unsigned char room[]) {
-	short room_num, day;
-	printf("í‡´ì‹¤í•  ë°© ë²ˆí˜¸ ì…ë ¥: ");
-	scanf("%d", &room_num);
-	if (room_num <= 0 || room_num > 50) {
-		printf("ì˜ëª»ëœ ê°’ì…ë‹ˆë‹¤. 1~50ë²”ìœ„ì—ì„œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n\n");
-	}
-	else if (room[room_num] == 0) {
-		printf("ë¹ˆ ë°©ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n\n");
-	}
-	else {
-		printf("íˆ¬ìˆ™ì¼ ì…ë ¥: ");
-		scanf("%d", &day);
-		printf("ì •ì‚°í•  ìš”ê¸ˆì€ %dì›ì…ë‹ˆë‹¤.\n", calcMoney(room[room_num], day));
-		room[room_num] = 0;
-		printf("ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.\n\n");
-	}
-}
-
-unsigned int calcMoney(unsigned char capacity, short day) {
+unsigned int calcMoney(unsigned char capacity, int day) {
 	if (capacity > 2) return (50000 + (capacity - 2) * 5000) * day;
 	else return 50000 * day;
 }
