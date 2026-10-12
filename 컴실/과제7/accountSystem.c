@@ -1,4 +1,3 @@
-//accountSystem.c
 #include "account_data.h"
 
 //계좌 생성
@@ -80,7 +79,7 @@ int isRightPW(Account user) {
 	}
 }
 
-int  loadUserData(Account users[], char* filename, char* filename2) {
+int loadUserData(Account users[], char* filename, char* filename2) {
 	FILE* fp, * fp2;
 	fp = fopen(filename, "r");
 	fp2 = fopen(filename2, "r");
@@ -102,7 +101,7 @@ int  loadUserData(Account users[], char* filename, char* filename2) {
 		}
 		users[count] = temp;
 		count++;
-		
+
 	}
 	fclose(fp);
 	line_num = 0;
@@ -113,10 +112,10 @@ int  loadUserData(Account users[], char* filename, char* filename2) {
 		char id[20] = { 0 };
 		int check = sscanf(line, "%[^,],%[^,],%lld,%lld", id, temp2.type, &temp2.money, &temp2.total);
 		if (check != 4) {
-			printf("[오류] %d번째 줄: 고객 데이터 형식이 올바르지 않아 건너뜁니다. -> %s", line_num, line);
+			printf("[오류] %d번째 줄: 거래내역 데이터 형식이 올바르지 않아 건너뜁니다. -> %s", line_num, line);
 			continue;
 		}
-		for (int i = 0;i < count;i++) {
+		for (int i = 0; i < count; i++) {
 			if (!strcmp(users[i].accountNum, id)) {
 				if (users[i].history_count >= MAX_HISTORY) {
 					for (int j = 0; j < MAX_HISTORY - 1; j++) {
@@ -130,6 +129,26 @@ int  loadUserData(Account users[], char* filename, char* filename2) {
 		}
 
 	}
+	printf("\n");
 	fclose(fp2);
 	return count;
+}
+
+int writeUserData(Account users[], char* filename, char* filename2, int count) {
+	FILE* fp, * fp2;
+	fp = fopen(filename, "w");
+	fp2 = fopen(filename2, "w");
+	if (fp == NULL && fp2 == NULL) {
+		printf("파일을 불러올 수 없습니다.\n\n");
+		return -1;
+	}
+	for (int i = 0; i < count; i++) {
+		fprintf(fp, "%s,%s,%s,%lld\n", users[i].accountNum, users[i].name, users[i].password, users[i].total);
+		for (int j = 0; j < users[i].history_count; j++) {
+			fprintf(fp2, "%s,%s,%lld,%lld\n", users[i].accountNum, users[i].history[j].type, users[i].history[j].money, users[i].history[j].total);
+		}
+	}
+	fclose(fp);
+	fclose(fp2);
+	return 0;
 }

@@ -1,4 +1,3 @@
-//bankSystem.c
 #include "account_data.h"
 
 //입금
@@ -22,9 +21,9 @@ void deposit(Account users[], int count) {
 		else {
 			users[num].total += money;
 			made_history(&users[num], money, "입금");
-			printf("%s님의 계좌 %s의 거래 후 잔액은 %lld원입니다.\n\n", users[num].name, users[num].accountNum, users[num].total);
+			printf("%s님의 계좌 %s의 거래 후 잔액은 %lld입니다.\n\n", users[num].name, users[num].accountNum, users[num].total);
 		}
-
+		
 	}
 }
 
@@ -37,13 +36,11 @@ void withdrawal(Account users[], int count) {
 	scanf("%s", account_num);
 
 	int num = find_account_by_num(users, account_num, count);
-	int result;
 	if (num == -1) {
 		printf("[오류] 존재하지 않는 계좌번호입니다.\n\n");
 	}
 	else {
-		result = isRightPW(users[num]);
-		if (result == 0) {
+		if (isRightPW(users[num]) == 0) {
 			printf("출금할 금액 입력: ");
 			scanf("%lld", &money);
 			if (money > users[num].total) {
@@ -56,7 +53,7 @@ void withdrawal(Account users[], int count) {
 				else {
 					users[num].total -= money;
 					made_history(&users[num], -money, "출금");
-					printf("%s님의 계좌 %s의 거래 후 잔액은 %lld원입니다.\n\n", users[num].name, users[num].accountNum, users[num].total);
+					printf("%s님의 계좌 %s의 거래 후 잔액은 %lld입니다.\n\n", users[num].name, users[num].accountNum, users[num].total);
 				}
 			}
 		}
@@ -73,14 +70,12 @@ void checkBalance(Account users[], int count) {
 	scanf("%s", account_num);
 
 	int num = find_account_by_num(users, account_num, count);
-	int result;
 	if (num == -1) {
 		printf("[오류] 존재하지 않는 계좌번호입니다.\n\n");
 	}
 	else {
-		result = isRightPW(users[num]);
-		if (result == 0) {
-			printf("%s님의 계좌 %s의 잔액은 %lld원입니다.\n\n", users[num].name, users[num].accountNum, users[num].total);
+		if (isRightPW(users[num]) == 0) {
+			printf("%s님의 계좌 %s의 잔액은 %lld입니다.\n\n", users[num].name, users[num].accountNum, users[num].total);
 			made_history(&users[num], 0, "잔액 조회");
 		}
 	}
@@ -98,33 +93,25 @@ void transfer(Account users[], int count) {
 
 	int num = find_account_by_num(users, my_num, count);
 	int num2 = find_account_by_num(users, other_num, count);
-	int result;
 
 	if (num == -1 || num2 == -1) {
 		printf("[오류] 존재하지 않는 계좌번호입니다.\n\n");
 	}
 	else {
-		result = isRightPW(users[num]);
-		if (result == 0) {
+		if (isRightPW(users[num]) == 0) {
 			printf("이체할 금액 입력: ");
 			scanf("%lld", &money);
 			if (money > users[num].total) {
 				printf("잔액이 부족합니다.\n\n");
 			}
 			else {
-				if (money < 0) {
-					printf("[오류] 잘못된 입력값입니다. 양수로 입력해주세요.\n\n");
-				}
-				else {
-					users[num].total -= money;
-					users[num2].total += money;
-					made_history(&users[num], money, "이체(송금)");
-					made_history(&users[num2], money, "입금");
-					printf("%s님의 계좌 %s의 거래 후 잔액은 %lld원입니다.\n\n", users[num].name, users[num].accountNum, users[num].total);
-				}
-				
+				users[num].total -= money;
+				users[num2].total += money;
+				made_history(&users[num], money, "이체(송금)");
+				made_history(&users[num2], money, "입금");
+				printf("%s님의 계좌 %s의 거래 후 잔액은 %lld입니다.\n\n", users[num].name, users[num].accountNum, users[num].total);
 			}
-
+			
 		}
 	}
 }

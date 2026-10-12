@@ -1,13 +1,12 @@
 //toyBank.c
 #include "account_data.h"
 
-
 int main() {
 	srand((unsigned int)time(NULL)); //프로그램 실행 시 매번 다른 난수가 나오게 설정
 	Account users[MAX_ACCOUNT];
 	int service, bank_service;
-	char filename[] = "..\\컴실\\userData.txt";
-	char filename2[] = "..\\컴실\\transactionData.txt";
+	char filename[] = "..\\userData.txt";
+	char filename2[] = "..\\transactionData.txt";
 	int user_count = loadUserData(users, filename, filename2);
 	if (user_count == -1) {
 		return -1;
@@ -45,6 +44,10 @@ int main() {
 			checkTransaction(users, user_count);
 		}
 		else if (service == 4) {
+			int result = writeUserData(users, filename, filename2, user_count);
+			if (result == -1) {
+				printf("데이터 저장에 실패하였습니다.\n\n");
+			}
 			printf("프로그램을 종료합니다.");
 			break;
 		}

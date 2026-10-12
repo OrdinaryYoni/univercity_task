@@ -36,3 +36,4 @@ void checkBalance(Account users[], int count);
 void transfer(Account users[], int count);
 void checkTransaction(Account users[], int count);
 int loadUserData(Account users[], char* filename, char* filename2);
+int writeUserData(Account users[], char* filename, char* filename2, int count);
