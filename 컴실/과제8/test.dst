@@ -1,0 +1,15 @@
+1	#include <stdio.h>
+2	
+3	int plus(int a, int b);
+4	
+5	int main() {
+6		int a, b;
+7		printf("test.cpp\n");
+8	
+9		printf("두 수를 입력(공백으로 구분): ");
+10		scanf_s("%d %d", &a, &b);
+11	
+12		printf("a+b=%d", plus(a, b));
+13	}
+14	
+15	int plus(int a, int b) { return a + b; }
