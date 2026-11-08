@@ -17,20 +17,20 @@ Student* sortingAscending(Student* head, Student* new);
 int main(void) {
 	Student* head = NULL;
 	int students;
-	printf("ÇĞ»ıÀÇ ¼ö: ");
+	printf("í•™ìƒì˜ ìˆ˜: ");
 	scanf("%d", &students);
 	if (students <= 0) {
-		printf("¾ç¼ö·Î ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		printf("ì–‘ìˆ˜ë¡œ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		exit(1);
 	}
 
 	for (int i = 0;i < students;i++) {
 		char name[20];
 		int mid, final;
-		printf("ÀÌ¸§ Áß°£Á¡¼ö ±â¸»Á¡¼ö ÀÔ·Â: ");
+		printf("ì´ë¦„ ì¤‘ê°„ì ìˆ˜ ê¸°ë§ì ìˆ˜ ì…ë ¥: ");
 		scanf("%s %d %d", name, &mid, &final);
 		if (mid < 0 || final < 0) {
-			printf("¾ç¼ö·Î ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			printf("ì–‘ìˆ˜ë¡œ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			exit(1);
 		}
 
@@ -38,8 +38,8 @@ int main(void) {
 		head = sortingAscending(head, node);
 	}
 
-	printf("\n====*ÇĞ»ı ¼ºÀû ¿À¸§Â÷¼ø Á¤·Ä °á°ú*====\n");
-	printf("ÀÌ¸§\tÁß°£\t±â¸»\tÃÑÁ¡\n");
+	printf("\n====*í•™ìƒ ì„±ì  ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬ ê²°ê³¼*====\n");
+	printf("ì´ë¦„\tì¤‘ê°„\tê¸°ë§\tì´ì \n");
 	while (head != NULL) {
 		Student* temp = head;
 		printf("%s\t%d\t%d\t%d\n", head->name, head->mid, head->final, head->total);
@@ -51,7 +51,7 @@ int main(void) {
 Student* createNode(char name[20], int mid, int final) {
 	struct Student* list = (Student*)malloc(sizeof(Student));
 	if (list == NULL) {
-		printf("µ¿Àû ¸Ş¸ğ¸® ÇÒ´ç ¿À·ù!\n");
+		printf("ë™ì  ë©”ëª¨ë¦¬ í• ë‹¹ ì˜¤ë¥˜!\n");
 		exit(1);
 	}
 	strcpy(list->name, name);
